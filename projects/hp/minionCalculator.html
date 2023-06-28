@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+}
+.header {
+  padding: 40px 150px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 25px;
+}
+.content {padding:50px; text-align:center}
+.button {
+  background-color: #1EEEF5;
+  border: 5px solid #299A9C;
+  color: #299A9C;
+  padding: 20px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.button:hover {
+  background-color: #b9f8fa;
+  border: 5px solid #12848f;
+  color: #299A9C;
+}
+</style>
+</head>
+<body>
+
+<script> 
+function dbg(x) {
+  console.log(x); 
+}
+
+// code goes here 
+// minionInfo[x][0] -> minion name of x'th element
+// minionInfo[x][i] (1 <= i < size(minionInfo[x])) -> [# required, item required] to upgrade minion x to tier i 
+const minionInfo = [
+['BLAZE', [80, 'BLAZE_ROD'], [160, 'BLAZE_ROD'], [320, 'BLAZE_ROD'], [512, 'BLAZE_ROD'], [8, 'ENCHANTED_BLAZE_POWDER'], [24, 'ENCHANTED_BLAZE_POWDER'], [64, 'ENCHANTED_BLAZE_POWDER'], [128, 'ENCHANTED_BLAZE_POWDER'], [256, 'ENCHANTED_BLAZE_POWDER'], [512, 'ENCHANTED_BLAZE_POWDER'], [8, 'ENCHANTED_BLAZE_ROD']],
+['CAVE_SPIDER', [80, 'SPIDER_EYE'], [160, 'SPIDER_EYE'], [320, 'SPIDER_EYE'], [512, 'SPIDER_EYE'], [8, 'ENCHANTED_SPIDER_EYE'], [24, 'ENCHANTED_SPIDER_EYE'], [64, 'ENCHANTED_SPIDER_EYE'], [128, 'ENCHANTED_SPIDER_EYE'], [256, 'ENCHANTED_SPIDER_EYE'], [512, 'ENCHANTED_SPIDER_EYE'], [16, 'ENCHANTED_FERMENTED_SPIDER_EYE']],
+['CREEPER', [80, 'SULPHUR'], [160, 'SULPHUR'], [320, 'SULPHUR'], [512, 'SULPHUR'], [8, 'ENCHANTED_GUNPOWDER'], [24, 'ENCHANTED_GUNPOWDER'], [64, 'ENCHANTED_GUNPOWDER'], [128, 'ENCHANTED_GUNPOWDER'], [256, 'ENCHANTED_GUNPOWDER'], [512, 'ENCHANTED_GUNPOWDER'], [16, 'ENCHANTED_FIREWORK_ROCKET']],
+['MAGMA', [80, 'MAGMA_CREAM'], [160, 'MAGMA_CREAM'], [320, 'MAGMA_CREAM'], [512, 'MAGMA_CREAM'], [8, 'ENCHANTED_MAGMA_CREAM'], [16, 'ENCHANTED_MAGMA_CREAM'], [32, 'ENCHANTED_MAGMA_CREAM'], [64, 'ENCHANTED_MAGMA_CREAM'], [128, 'ENCHANTED_MAGMA_CREAM'], [256, 'ENCHANTED_MAGMA_CREAM'], [512, 'ENCHANTED_MAGMA_CREAM']],
+['SKELETON', [80, 'BONE'], [160, 'BONE'], [320, 'BONE'], [512, 'BONE'], [8, 'ENCHANTED_BONE'], [16, 'ENCHANTED_BONE'], [32, 'ENCHANTED_BONE'], [64, 'ENCHANTED_BONE'], [128, 'ENCHANTED_BONE'], [256, 'ENCHANTED_BONE'], [512, 'ENCHANTED_BONE']],
+['SLIME', [80, 'SLIME_BALL'], [160, 'SLIME_BALL'], [320, 'SLIME_BALL'], [512, 'SLIME_BALL'], [8, 'ENCHANTED_SLIME_BALL'], [24, 'ENCHANTED_SLIME_BALL'], [64, 'ENCHANTED_SLIME_BALL'], [128, 'ENCHANTED_SLIME_BALL'], [256, 'ENCHANTED_SLIME_BALL'], [512, 'ENCHANTED_SLIME_BALL'], [8, 'ENCHANTED_SLIME_BLOCK']],
+['SPIDER', [80, 'STRING'], [160, 'STRING'], [320, 'STRING'], [512, 'STRING'], [8, 'ENCHANTED_STRING'], [16, 'ENCHANTED_STRING'], [32, 'ENCHANTED_STRING'], [64, 'ENCHANTED_STRING'], [128, 'ENCHANTED_STRING'], [256, 'ENCHANTED_STRING'], [512, 'ENCHANTED_STRING']],
+['ZOMBIE', [80, 'ROTTEN_FLESH'], [160, 'ROTTEN_FLESH'], [320, 'ROTTEN_FLESH'], [512, 'ROTTEN_FLESH'], [8, 'ENCHANTED_ROTTEN_FLESH'], [16, 'ENCHANTED_ROTTEN_FLESH'], [32, 'ENCHANTED_ROTTEN_FLESH'], [64, 'ENCHANTED_ROTTEN_FLESH'], [128, 'ENCHANTED_ROTTEN_FLESH'], [256, 'ENCHANTED_ROTTEN_FLESH'], [512, 'ENCHANTED_ROTTEN_FLESH']]
+];
+const reqItems = new Set(); 
+for (let i = 0; i < minionInfo.length; ++i) {
+  for (let j = 1; j < minionInfo[i].length; ++j) {
+    reqItems.add(minionInfo[i][j][1]); 
+  }
+}
+console.log("CURRENT MINION ITEMS (SO FAR)")
+console.log(reqItems); 
+const api_prof_link = "https://sky.shiiyu.moe/api/v2/profile/"; // incomplete link, needs user minecraft name 
+const api_bazaar_link = "https://sky.shiiyu.moe/api/v2/bazaar"; // complete 
+
+const sellCosts = new Map(); 
+const buyCosts = new Map(); 
+const userMinionLevels = new Map(); 
+let savedUsername = "", savedProfname = ""; 
+let username = "", profname = ""; 
+let gotLevels = false; 
+
+let upgList = []; 
+// minionUpgrade -> [minion name, level, item required, # item, item cost bazaar, total cost bazaar]
+// function(x, y) { return x[5] - y[5] }
+
+function getUpgrades() {
+  for (let i = 0; i < minionInfo.length; ++i) {
+    let minionName = minionInfo[i][0]; 
+    let curLevel = userMinionLevels.get(minionName); 
+    dbg(minionName); 
+    dbg(curLevel); 
+    for (let j = curLevel + 1; j < minionInfo[i].length; ++j) {
+      let item = minionInfo[i][j][1]; 
+      let num = minionInfo[i][j][0]; 
+      let itemCost = buyCosts.get(item); 
+      upgList.push([minionName, j, item, num, itemCost, itemCost * num]); 
+    }
+  }
+  upgList.sort(function(x, y) { return x[5] - y[5] }); 
+  console.log("FULL LIST"); 
+  console.log(upgList); 
+  console.log(upgList.length); 
+  for (let i = 0; i < upgList.length; ++i) {
+    console.log("UPGRADE: ", upgList[i][0], " to level ", upgList[i][1]); 
+    console.log(upgList[i]); 
+  }
+}
+
+async function getBazaar() { 
+  const response = await fetch(api_bazaar_link); 
+  const data = await response.json();
+  sellCosts.clear();
+  buyCosts.clear();  
+  for (let item of reqItems) {
+    // dbg(item); 
+    // dbg(data[item]); 
+    // dbg(data[item]["buyPrice"]); 
+    buyCosts.set(item, data[item]["buyPrice"]); 
+    sellCosts.set(item, data[item]["sellPrice"]); 
+  }
+
+  dbg("Got bazaar"); 
+}
+
+async function getLevels() { // gets player minion levels 
+  if (savedUsername == username && savedProfname == profname && username != "" && profname != "") {
+    gotLevels = true; 
+    return; 
+  }
+  const link = api_prof_link + username; 
+  const response = await fetch(link); 
+  if (!response.ok) {
+    window.alert("Error: No skyblock profile exists with this username.\nLikely you spelt your name wrong. Check for extra spaces/capitalization."); 
+    return;
+  }
+  const data = await response.json();  
+
+  for (key in data.profiles) {
+    const profile = data["profiles"][key];  
+    const fruit = profile["cute_name"]; 
+    console.log("Profile: ", fruit); 
+    if (profname.toUpperCase() == fruit.toUpperCase()) {
+      userMinionLevels.clear();  
+      for (i in profile["data"]["minions"]) {
+        // console.log(profile["data"]["minions"][i]); 
+        userMinionLevels.set(profile["data"]["minions"][i].id, profile["data"]["minions"][i].maxLevel); 
+      }
+      dbg("Got minion levels"); 
+      gotLevels = true; 
+      return; 
+    }
+  }
+  window.alert("No skyblock profile exists with this profile name (Fruit name), for the given skyblock username."); 
+  return; 
+}
+async function calc() {
+  username = document.getElementById("usernameInput").value; 
+  profname = document.getElementById("profnameInput").value; 
+  gotLevels = false; 
+  let result = await getLevels(); 
+  if (gotLevels == false) {
+    return; 
+  }
+  let result0 = await getBazaar(); 
+  getUpgrades(); 
+}
+</script> 
+
+
+<!-- HTML  -->
+<div class="header">
+  <h1>Cheapest Next Minion Calculator</h1>
+  <p>Fill In all parameters. Then the next cheapest minions to level up will be displayed. 
+    Keep in mind the hypixel API may take ~5 minutes to update, so recent changes may not be reflected yet.
+  </p>
+  <p>
+    Additionally, the calculator assumes you have not skipped any levels. (If level i is reached, level j is reached for all levels j < i).
+    Also, the calculator doesn't take the levels that require coins to upgrade into account. 
+  </p>
+</div>
+
+<div class="content">
+  <label>Minecraft Username:</label>
+  <input type="text" id="usernameInput">
+  <label>Hypixel Profile Name (e.g. "Pear" without quotes):</label>
+  <input type="text" id="profnameInput">
+  <br><br>
+  <button class="button" onclick="calc()">
+    Calculate! 
+  </button>
+</div>
+
+</body>
+</html>
