@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>My First JavaScript</h2>
+<label>enter a word</label><br>
+<input type="text" id="myText"><br>
+<button type="button" id="myButton">submit</button>
+<script>
+  const bazaar_url = "https://sky.shiiyu.moe/api/v2/bazaar";
+  let info = []; 
+  document.getElementById("myButton").onclick = function() {
+    let boxInfo = document.getElementById("myText").value; 
+    info.push(boxInfo); 
+    // console.log(info); 
+    accessBazaar(); 
+  }
+  async function accessBazaar() {
+    const response = await fetch(bazaar_url); 
+    const data = await response.json(); 
+    console.log(data); 
+    // var json = JSON.parse(data); 
+    console.log(data["BLAZE_ROD"]["buyPrice"]); 
+  }
+  function gotData(data) {
+    console.log(data); 
+  }
+  </script>
+
+<p id="demo"></p>
+
+</body>
+</html> 
+ 
