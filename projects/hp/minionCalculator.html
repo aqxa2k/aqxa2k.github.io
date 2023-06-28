@@ -53,16 +53,49 @@ const minionInfo = [
 ['SKELETON', [80, 'BONE'], [160, 'BONE'], [320, 'BONE'], [512, 'BONE'], [8, 'ENCHANTED_BONE'], [16, 'ENCHANTED_BONE'], [32, 'ENCHANTED_BONE'], [64, 'ENCHANTED_BONE'], [128, 'ENCHANTED_BONE'], [256, 'ENCHANTED_BONE'], [512, 'ENCHANTED_BONE']],
 ['SLIME', [80, 'SLIME_BALL'], [160, 'SLIME_BALL'], [320, 'SLIME_BALL'], [512, 'SLIME_BALL'], [8, 'ENCHANTED_SLIME_BALL'], [24, 'ENCHANTED_SLIME_BALL'], [64, 'ENCHANTED_SLIME_BALL'], [128, 'ENCHANTED_SLIME_BALL'], [256, 'ENCHANTED_SLIME_BALL'], [512, 'ENCHANTED_SLIME_BALL'], [8, 'ENCHANTED_SLIME_BLOCK']],
 ['SPIDER', [80, 'STRING'], [160, 'STRING'], [320, 'STRING'], [512, 'STRING'], [8, 'ENCHANTED_STRING'], [16, 'ENCHANTED_STRING'], [32, 'ENCHANTED_STRING'], [64, 'ENCHANTED_STRING'], [128, 'ENCHANTED_STRING'], [256, 'ENCHANTED_STRING'], [512, 'ENCHANTED_STRING']],
-['ZOMBIE', [80, 'ROTTEN_FLESH'], [160, 'ROTTEN_FLESH'], [320, 'ROTTEN_FLESH'], [512, 'ROTTEN_FLESH'], [8, 'ENCHANTED_ROTTEN_FLESH'], [16, 'ENCHANTED_ROTTEN_FLESH'], [32, 'ENCHANTED_ROTTEN_FLESH'], [64, 'ENCHANTED_ROTTEN_FLESH'], [128, 'ENCHANTED_ROTTEN_FLESH'], [256, 'ENCHANTED_ROTTEN_FLESH'], [512, 'ENCHANTED_ROTTEN_FLESH']]
+['ZOMBIE', [80, 'ROTTEN_FLESH'], [160, 'ROTTEN_FLESH'], [320, 'ROTTEN_FLESH'], [512, 'ROTTEN_FLESH'], [8, 'ENCHANTED_ROTTEN_FLESH'], [16, 'ENCHANTED_ROTTEN_FLESH'], [32, 'ENCHANTED_ROTTEN_FLESH'], [64, 'ENCHANTED_ROTTEN_FLESH'], [128, 'ENCHANTED_ROTTEN_FLESH'], [256, 'ENCHANTED_ROTTEN_FLESH'], [512, 'ENCHANTED_ROTTEN_FLESH']],
+['ENDERMAN', [64, 'ENDER_PEARL'], [128, 'ENDER_PEARL'], [8, 'ENCHANTED_ENDER_PEARL'], [24, 'ENCHANTED_ENDER_PEARL'], [48, 'ENCHANTED_ENDER_PEARL'], [96, 'ENCHANTED_ENDER_PEARL'], [8, 'ENCHANTED_EYE_OF_ENDER'], [24, 'ENCHANTED_EYE_OF_ENDER'], [48, 'ENCHANTED_EYE_OF_ENDER'], [96, 'ENCHANTED_EYE_OF_ENDER'], [192, 'ENCHANTED_EYE_OF_ENDER']],
+['GHAST', [64, 'GHAST_TEAR'], [128, 'GHAST_TEAR'], [256, 'GHAST_TEAR'], [512, 'GHAST_TEAR'], [256, 'ENCHANTED_GHAST_TEAR'], [512, 'ENCHANTED_GHAST_TEAR'], [32, 'SILVER_FANG'], [64, 'SILVER_FANG'], [128, 'SILVER_FANG'], [256, 'SILVER_FANG'], [512, 'SILVER_FANG']],
+['WHEAT', [80, 'WHEAT'], [160, 'WHEAT'], [320, 'WHEAT'], [512, 'WHEAT'], [96, 'HAY_BLOCK'], [192, 'HAY_BLOCK'], [384, 'HAY_BLOCK'], [512, 'HAY_BLOCK'], [8, 'ENCHANTED_HAY_BLOCK'], [16, 'ENCHANTED_HAY_BLOCK'], [32, 'ENCHANTED_HAY_BLOCK'], [64, 'ENCHANTED_HAY_BLOCK']],
+['SUGAR_CANE', [128, 'SUGAR_CANE'], [256, 'SUGAR_CANE'], [512, 'SUGAR_CANE'], [8, 'ENCHANTED_SUGAR'], [24, 'ENCHANTED_SUGAR'], [64, 'ENCHANTED_SUGAR'], [128, 'ENCHANTED_SUGAR'], [256, 'ENCHANTED_SUGAR'], [512, 'ENCHANTED_SUGAR'], [8, 'ENCHANTED_SUGAR_CANE'], [16, 'ENCHANTED_SUGAR_CANE'], [32, 'ENCHANTED_SUGAR_CANE']],
+['SHEEP', [64, 'MUTTON'], [128, 'MUTTON'], [256, 'MUTTON'], [512, 'MUTTON'], [8, 'ENCHANTED_MUTTON'], [24, 'ENCHANTED_MUTTON'], [64, 'ENCHANTED_MUTTON'], [128, 'ENCHANTED_MUTTON'], [256, 'ENCHANTED_MUTTON'], [512, 'ENCHANTED_MUTTON'], [8, 'ENCHANTED_COOKED_MUTTON'], [16, 'ENCHANTED_COOKED_MUTTON']],
+['RABBIT', [64, 'RABBIT'], [128, 'RABBIT'], [256, 'RABBIT'], [512, 'RABBIT'], [32, 'ENCHANTED_RABBIT_FOOT'], [64, 'ENCHANTED_RABBIT_FOOT'], [128, 'ENCHANTED_RABBIT_FOOT'], [256, 'ENCHANTED_RABBIT_FOOT'], [512, 'ENCHANTED_RABBIT_FOOT'], [256, 'ENCHANTED_RABBIT_HIDE'], [512, 'ENCHANTED_RABBIT_HIDE'], [1024, 'ENCHANTED_RABBIT_HIDE']],
+['PUMPKIN', [80, 'PUMPKIN'], [160, 'PUMPKIN'], [320, 'PUMPKIN'], [512, 'PUMPKIN'], [8, 'ENCHANTED_PUMPKIN'], [16, 'ENCHANTED_PUMPKIN'], [32, 'ENCHANTED_PUMPKIN'], [64, 'ENCHANTED_PUMPKIN'], [128, 'ENCHANTED_PUMPKIN'], [256, 'ENCHANTED_PUMPKIN'], [512, 'ENCHANTED_PUMPKIN'], [1024, 'ENCHANTED_PUMPKIN']],
+['POTATO', [128, 'POTATO_ITEM'], [256, 'POTATO_ITEM'], [512, 'POTATO_ITEM'], [8, 'ENCHANTED_POTATO'], [24, 'ENCHANTED_POTATO'], [64, 'ENCHANTED_POTATO'], [128, 'ENCHANTED_POTATO'], [256, 'ENCHANTED_POTATO'], [512, 'ENCHANTED_POTATO'], [8, 'ENCHANTED_BAKED_POTATO'], [16, 'ENCHANTED_BAKED_POTATO'], [32, 'ENCHANTED_BAKED_POTATO']],
+['PIG', [64, 'PORK'], [128, 'PORK'], [256, 'PORK'], [512, 'PORK'], [8, 'ENCHANTED_PORK'], [24, 'ENCHANTED_PORK'], [64, 'ENCHANTED_PORK'], [128, 'ENCHANTED_PORK'], [256, 'ENCHANTED_PORK'], [512, 'ENCHANTED_PORK'], [8, 'ENCHANTED_GRILLED_PORK'], [16, 'ENCHANTED_GRILLED_PORK']],
+['NETHER_WARTS', [80, 'NETHER_STALK'], [160, 'NETHER_STALK'], [320, 'NETHER_STALK'], [512, 'NETHER_STALK'], [8, 'ENCHANTED_NETHER_STALK'], [16, 'ENCHANTED_NETHER_STALK'], [32, 'ENCHANTED_NETHER_STALK'], [64, 'ENCHANTED_NETHER_STALK'], [128, 'ENCHANTED_NETHER_STALK'], [256, 'ENCHANTED_NETHER_STALK'], [512, 'ENCHANTED_NETHER_STALK'], [1024, 'ENCHANTED_NETHER_STALK']],
+['MUSHROOM', [80, 'RED_MUSHROOM'], [160, 'RED_MUSHROOM'], [320, 'RED_MUSHROOM'], [512, 'RED_MUSHROOM'], [8, 'ENCHANTED_RED_MUSHROOM'], [16, 'ENCHANTED_RED_MUSHROOM'], [32, 'ENCHANTED_RED_MUSHROOM'], [64, 'ENCHANTED_RED_MUSHROOM'], [128, 'ENCHANTED_RED_MUSHROOM'], [256, 'ENCHANTED_RED_MUSHROOM'], [512, 'ENCHANTED_RED_MUSHROOM']],
+['MELON', [256, 'MELON'], [512, 'MELON'], [128, 'MELON_BLOCK'], [256, 'MELON_BLOCK'], [512, 'MELON_BLOCK'], [64, 'ENCHANTED_MELON'], [128, 'ENCHANTED_MELON'], [256, 'ENCHANTED_MELON'], [512, 'ENCHANTED_MELON'], [8, 'ENCHANTED_MELON_BLOCK'], [16, 'ENCHANTED_MELON_BLOCK'], [32, 'ENCHANTED_MELON_BLOCK']],
+['COW', [64, 'RAW_BEEF'], [128, 'RAW_BEEF'], [256, 'RAW_BEEF'], [512, 'RAW_BEEF'], [8, 'ENCHANTED_RAW_BEEF'], [24, 'ENCHANTED_RAW_BEEF'], [64, 'ENCHANTED_RAW_BEEF'], [128, 'ENCHANTED_RAW_BEEF'], [256, 'ENCHANTED_RAW_BEEF'], [512, 'ENCHANTED_RAW_BEEF'], [256, 'ENCHANTED_LEATHER'], [512, 'ENCHANTED_LEATHER']],
+['COCOA', [80, 'INK_SACK:3'], [160, 'INK_SACK:3'], [320, 'INK_SACK:3'], [512, 'INK_SACK:3'], [8, 'ENCHANTED_COCOA'], [24, 'ENCHANTED_COCOA'], [64, 'ENCHANTED_COCOA'], [128, 'ENCHANTED_COCOA'], [256, 'ENCHANTED_COCOA'], [512, 'ENCHANTED_COCOA'], [8, 'ENCHANTED_COOKIE'], [16, 'ENCHANTED_COOKIE']],
+['CHICKEN', [64, 'RAW_CHICKEN'], [128, 'RAW_CHICKEN'], [256, 'RAW_CHICKEN'], [512, 'RAW_CHICKEN'], [8, 'ENCHANTED_RAW_CHICKEN'], [16, 'ENCHANTED_RAW_CHICKEN'], [32, 'ENCHANTED_RAW_CHICKEN'], [64, 'ENCHANTED_RAW_CHICKEN'], [128, 'ENCHANTED_RAW_CHICKEN'], [256, 'ENCHANTED_RAW_CHICKEN'], [512, 'ENCHANTED_RAW_CHICKEN'], [1024, 'ENCHANTED_RAW_CHICKEN']],
+['CARROT', [128, 'CARROT_ITEM'], [256, 'CARROT_ITEM'], [512, 'CARROT_ITEM'], [8, 'ENCHANTED_CARROT'], [24, 'ENCHANTED_CARROT'], [64, 'ENCHANTED_CARROT'], [128, 'ENCHANTED_CARROT'], [256, 'ENCHANTED_CARROT'], [512, 'ENCHANTED_CARROT'], [8, 'ENCHANTED_GOLDEN_CARROT'], [16, 'ENCHANTED_GOLDEN_CARROT'], [32, 'ENCHANTED_GOLDEN_CARROT']],
+['CACTUS', [128, 'CACTUS'], [256, 'CACTUS'], [512, 'CACTUS'], [8, 'ENCHANTED_CACTUS_GREEN'], [24, 'ENCHANTED_CACTUS_GREEN'], [64, 'ENCHANTED_CACTUS_GREEN'], [128, 'ENCHANTED_CACTUS_GREEN'], [256, 'ENCHANTED_CACTUS_GREEN'], [512, 'ENCHANTED_CACTUS_GREEN'], [8, 'ENCHANTED_CACTUS'], [16, 'ENCHANTED_CACTUS'], [32, 'ENCHANTED_CACTUS']],
 ];
+const noBazaar = new Map(); 
+noBazaar.set("SILVER_FANG", 2000); 
+
+const diffNames = new Map(); 
+diffNames.set("RABBIT", "RABBIT_FOOT"); 
+diffNames.set("SULPHUR", "GUNPOWDER"); 
+diffNames.set("PORK", "RAW_PORKCHOP"); 
+diffNames.set("NETHER_STALK", "NETHER_WART"); 
+diffNames.set("NETHER_STALK", "NETHER_WART"); 
+diffNames.set("ENCHANTED_NETHER_STALK", "ENCHANTED_NETHER_WART"); 
+diffNames.set("INK_SACK:3", "COCOA_BEAN"); 
+diffNames.set("CARROT_ITEM", "CARROT"); 
+diffNames.set("ENCHANTED_HAY_BLOCK", "ENCHANTED_HAY_BALE"); 
+diffNames.set("HAY_BLOCK", "HAY_BALE"); 
+diffNames.set("POTATO_ITEM", "POTATO"); 
+
 const reqItems = new Set(); 
+dbg(minionInfo); 
 for (let i = 0; i < minionInfo.length; ++i) {
   for (let j = 1; j < minionInfo[i].length; ++j) {
     reqItems.add(minionInfo[i][j][1]); 
   }
 }
-console.log("CURRENT MINION ITEMS (SO FAR)")
-console.log(reqItems); 
+
 const api_prof_link = "https://sky.shiiyu.moe/api/v2/profile/"; // incomplete link, needs user minecraft name 
 const api_bazaar_link = "https://sky.shiiyu.moe/api/v2/bazaar"; // complete 
 
@@ -81,19 +114,25 @@ function getUpgrades() {
   for (let i = 0; i < minionInfo.length; ++i) {
     let minionName = minionInfo[i][0]; 
     let curLevel = userMinionLevels.get(minionName); 
-    dbg(minionName); 
-    dbg(curLevel); 
     for (let j = curLevel + 1; j < minionInfo[i].length; ++j) {
       let item = minionInfo[i][j][1]; 
       let num = minionInfo[i][j][0]; 
       let itemCost = buyCosts.get(item); 
-      upgList.push([minionName, j, item, num, itemCost, itemCost * num]); 
+      let itemName = item; 
+      if (diffNames.has(item)) itemName = diffNames.get(item); 
+      let cur = [minionName, j, itemName, num, itemCost, itemCost * num]; 
+      if (noBazaar.has(item)) cur.push("*"); 
+      upgList.push(cur); 
     }
   }
   upgList.sort(function(x, y) { return x[5] - y[5] }); 
+  console.log("STARTS HERE"); 
+  console.log("<--------------------------------------------->")
   console.log("FULL LIST"); 
-  console.log(upgList); 
-  console.log(upgList.length); 
+  // console.log(upgList); 
+  // console.log(upgList.length); 
+  console.log("FORMAT: [minion, to level #, item req., #req., item insta-buy cost, total cost]");
+  console.log("STARRED (*) ITEMS UNAVAILABLE FROM BAZAAR, ASSUMED TO HAVE CONSTANT COSTS"); 
   for (let i = 0; i < upgList.length; ++i) {
     console.log("UPGRADE: ", upgList[i][0], " to level ", upgList[i][1]); 
     console.log(upgList[i]); 
@@ -106,11 +145,14 @@ async function getBazaar() {
   sellCosts.clear();
   buyCosts.clear();  
   for (let item of reqItems) {
-    // dbg(item); 
-    // dbg(data[item]); 
-    // dbg(data[item]["buyPrice"]); 
-    buyCosts.set(item, data[item]["buyPrice"]); 
-    sellCosts.set(item, data[item]["sellPrice"]); 
+    dbg(item); 
+    if (noBazaar.has(item)) {
+      buyCosts.set(item, noBazaar.get(item)); 
+      sellCosts.set(item, noBazaar.get(item)); 
+    } else {
+      buyCosts.set(item, data[item]["buyPrice"]); 
+      sellCosts.set(item, data[item]["sellPrice"]); 
+    }
   }
 
   dbg("Got bazaar"); 
