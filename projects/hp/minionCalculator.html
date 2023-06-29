@@ -12,7 +12,7 @@ body {
   text-align: center;
   background: #1abc9c;
   color: white;
-  font-size: 25px;
+  font-size: 20px;
 }
 .content {padding:50px; text-align:center}
 .button {
@@ -32,6 +32,10 @@ body {
   background-color: #b9f8fa;
   border: 5px solid #12848f;
   color: #299A9C;
+}
+.p1 {
+  font-weight: bold;
+  font-size: 29px;
 }
 </style>
 </head>
@@ -72,6 +76,7 @@ const minionInfo = [
 ['CARROT', [128, 'CARROT_ITEM'], [256, 'CARROT_ITEM'], [512, 'CARROT_ITEM'], [8, 'ENCHANTED_CARROT'], [24, 'ENCHANTED_CARROT'], [64, 'ENCHANTED_CARROT'], [128, 'ENCHANTED_CARROT'], [256, 'ENCHANTED_CARROT'], [512, 'ENCHANTED_CARROT'], [8, 'ENCHANTED_GOLDEN_CARROT'], [16, 'ENCHANTED_GOLDEN_CARROT'], [32, 'ENCHANTED_GOLDEN_CARROT']],
 ['CACTUS', [128, 'CACTUS'], [256, 'CACTUS'], [512, 'CACTUS'], [8, 'ENCHANTED_CACTUS_GREEN'], [24, 'ENCHANTED_CACTUS_GREEN'], [64, 'ENCHANTED_CACTUS_GREEN'], [128, 'ENCHANTED_CACTUS_GREEN'], [256, 'ENCHANTED_CACTUS_GREEN'], [512, 'ENCHANTED_CACTUS_GREEN'], [8, 'ENCHANTED_CACTUS'], [16, 'ENCHANTED_CACTUS'], [32, 'ENCHANTED_CACTUS']],
 ];
+const digits = "0123456789"; 
 const noBazaar = new Map(); 
 noBazaar.set("SILVER_FANG", 2000); 
 
@@ -110,7 +115,51 @@ let upgList = [];
 // minionUpgrade -> [minion name, level, item required, # item, item cost bazaar, total cost bazaar]
 // function(x, y) { return x[5] - y[5] }
 
+let maxCost = 0; 
+const cumMinions = new Map(); 
+let ckeys = []; 
+// [minion name, [[material, material #, material cost], [mat...]] 
+
+function getUpgrades2() {
+  cumMinions.clear(); 
+  ckeys = []; 
+  for (let i = 0; i < upgList.length; ++i) {
+    if (upgList[i][5] <= maxCost) {
+      if (cumMinions.has(upgList[i][0])) {
+        let cur = cumMinions.get(upgList[i][0]); 
+        let done = false; 
+        for (let j = 0; j < cur[1].length; ++j) {
+          if (upgList[i][2] == cur[1][j][0]) {
+            done = true; 
+            cur[1][j][1] += upgList[i][3]; 
+          }
+        }
+        if (done == false) {
+          cur[1].push([[upgList[i][2], upgList[i][3], upgList[i][4]]]); 
+        }
+        if (upgList[i][1] > cur[0]) cur[0] = upgList[i][1]; 
+        cumMinions.set(upgList[i][0], cur); 
+      } else {
+        cumMinions.set(upgList[i][0], [upgList[i][1], [[upgList[i][2], upgList[i][3], upgList[i][4]]]]); 
+        ckeys.push(upgList[i][0]); 
+      }
+    }
+  }
+  console.log("<--------------------------------------------------------------->"); 
+  console.log("CUMULATIVE MINION UPGRADES FOR ALL UPGRADES LESS THAN ", maxCost); 
+  
+  for (let j = 0; j < ckeys.length; ++j) {
+    let key = ckeys[j]; 
+    console.log("[Minion: ", key, "] from level ", userMinionLevels.get(key), " to level ", cumMinions.get(key)[0]); 
+    for (let i = 0; i < cumMinions.get(key)[1].length; ++i) {
+      console.log("Material: ", cumMinions.get(key)[1][i][1], "x ", cumMinions.get(key)[1][i][0], " at ", cumMinions.get(key)[1][i][2], " per, for total ", cumMinions.get(key)[1][i][2] * cumMinions.get(key)[1][i][1]); 
+    }
+    console.log(); 
+  }
+}
+
 function getUpgrades() {
+  upgList = []; 
   for (let i = 0; i < minionInfo.length; ++i) {
     let minionName = minionInfo[i][0]; 
     let curLevel = userMinionLevels.get(minionName); 
@@ -134,7 +183,7 @@ function getUpgrades() {
   console.log("FORMAT: [minion, to level #, item req., #req., item insta-buy cost, total cost]");
   console.log("STARRED (*) ITEMS UNAVAILABLE FROM BAZAAR, ASSUMED TO HAVE CONSTANT COSTS"); 
   for (let i = 0; i < upgList.length; ++i) {
-    console.log("UPGRADE: ", upgList[i][0], " to level ", upgList[i][1]); 
+    console.log("UPGRADE #", i + 1, ": ", upgList[i][0], " to level ", upgList[i][1]); 
     console.log(upgList[i]); 
   }
 }
@@ -144,8 +193,7 @@ async function getBazaar() {
   const data = await response.json();
   sellCosts.clear();
   buyCosts.clear();  
-  for (let item of reqItems) {
-    dbg(item); 
+  for (let item of reqItems) { 
     if (noBazaar.has(item)) {
       buyCosts.set(item, noBazaar.get(item)); 
       sellCosts.set(item, noBazaar.get(item)); 
@@ -155,7 +203,7 @@ async function getBazaar() {
     }
   }
 
-  dbg("Got bazaar"); 
+  console.log("Got bazaar"); 
 }
 
 async function getLevels() { // gets player minion levels 
@@ -181,7 +229,7 @@ async function getLevels() { // gets player minion levels
         // console.log(profile["data"]["minions"][i]); 
         userMinionLevels.set(profile["data"]["minions"][i].id, profile["data"]["minions"][i].maxLevel); 
       }
-      dbg("Got minion levels"); 
+      console.log("Got minion levels"); 
       gotLevels = true; 
       return; 
     }
@@ -199,9 +247,29 @@ async function calc() {
   }
   let result0 = await getBazaar(); 
   getUpgrades(); 
+
+  let userCost = document.getElementById("maxCostInput").value; 
+  if (userCost == "") return; 
+
+  userCost = userCost.replace(' ', '').replace(',', ''); 
+  let ok = true; 
+  for (let i = 0; i < userCost.length; ++i) {
+    let ok2 = false; 
+    for (let j = 0; j < 10; ++j) {
+      if (userCost[i] == digits[j]) {
+        ok2 = true; 
+      }
+    }
+    ok &= ok2; 
+  }
+  if (ok == false) {
+    window.alert("Number in max cost box is invalid"); 
+    return; 
+  }
+  maxCost = parseInt(userCost); 
+  getUpgrades2(); 
 }
 </script> 
-
 
 <!-- HTML  -->
 <div class="header">
@@ -211,7 +279,10 @@ async function calc() {
   </p>
   <p>
     Additionally, the calculator assumes you have not skipped any levels. (If level i is reached, level j is reached for all levels j < i).
-    Also, the calculator doesn't take the levels that require coins to upgrade into account. 
+    Also, the calculator is missing some of the level 12 upgrades. 
+  </p>
+  <p class="p1"> 
+    Press f12 and open the console before pressing calculate. 
   </p>
 </div>
 
@@ -219,7 +290,15 @@ async function calc() {
   <label>Minecraft Username:</label>
   <input type="text" id="usernameInput">
   <label>Hypixel Profile Name (e.g. "Pear" without quotes):</label>
-  <input type="text" id="profnameInput">
+  <input type="text" id="profnameInput"><br>
+  <br>
+  <label>
+    To calculate cumulative minion upgrades, type in the maximum amount of coins (integer) you are willing to spend on an upgrade. <br> 
+    The minions you should upgrade, levels, and cumulative costs/materials will be shown. <br> 
+    Then, scroll down past the cheapest costs list in the console. <br> 
+    Otherwise, leave this box blank. 
+  </label>
+  <input type="text" id="maxCostInput">
   <br><br>
   <button class="button" onclick="calc()">
     Calculate! 
