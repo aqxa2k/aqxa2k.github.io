@@ -46,6 +46,8 @@ function dbg(x) {
   console.log(x); 
 }
 
+// MISSING SLAYER MINIONS + SNOW + FLOWER
+
 // code goes here 
 // minionInfo[x][0] -> minion name of x'th element
 // minionInfo[x][i] (1 <= i < size(minionInfo[x])) -> [# required, item required] to upgrade minion x to tier i 
@@ -75,6 +77,25 @@ const minionInfo = [
 ['CHICKEN', [64, 'RAW_CHICKEN'], [128, 'RAW_CHICKEN'], [256, 'RAW_CHICKEN'], [512, 'RAW_CHICKEN'], [8, 'ENCHANTED_RAW_CHICKEN'], [16, 'ENCHANTED_RAW_CHICKEN'], [32, 'ENCHANTED_RAW_CHICKEN'], [64, 'ENCHANTED_RAW_CHICKEN'], [128, 'ENCHANTED_RAW_CHICKEN'], [256, 'ENCHANTED_RAW_CHICKEN'], [512, 'ENCHANTED_RAW_CHICKEN'], [1024, 'ENCHANTED_RAW_CHICKEN']],
 ['CARROT', [128, 'CARROT_ITEM'], [256, 'CARROT_ITEM'], [512, 'CARROT_ITEM'], [8, 'ENCHANTED_CARROT'], [24, 'ENCHANTED_CARROT'], [64, 'ENCHANTED_CARROT'], [128, 'ENCHANTED_CARROT'], [256, 'ENCHANTED_CARROT'], [512, 'ENCHANTED_CARROT'], [8, 'ENCHANTED_GOLDEN_CARROT'], [16, 'ENCHANTED_GOLDEN_CARROT'], [32, 'ENCHANTED_GOLDEN_CARROT']],
 ['CACTUS', [128, 'CACTUS'], [256, 'CACTUS'], [512, 'CACTUS'], [8, 'ENCHANTED_CACTUS_GREEN'], [24, 'ENCHANTED_CACTUS_GREEN'], [64, 'ENCHANTED_CACTUS_GREEN'], [128, 'ENCHANTED_CACTUS_GREEN'], [256, 'ENCHANTED_CACTUS_GREEN'], [512, 'ENCHANTED_CACTUS_GREEN'], [8, 'ENCHANTED_CACTUS'], [16, 'ENCHANTED_CACTUS'], [32, 'ENCHANTED_CACTUS']],
+['GLOWSTONE', [128, 'GLOWSTONE_DUST'], [256, 'GLOWSTONE_DUST'], [512, 'GLOWSTONE_DUST'], [8, 'ENCHANTED_GLOWSTONE_DUST'], [24, 'ENCHANTED_GLOWSTONE_DUST'], [64, 'ENCHANTED_GLOWSTONE_DUST'], [128, 'ENCHANTED_GLOWSTONE_DUST'], [256, 'ENCHANTED_GLOWSTONE_DUST'], [512, 'ENCHANTED_GLOWSTONE_DUST'], [8, 'ENCHANTED_GLOWSTONE'], [16, 'ENCHANTED_GLOWSTONE']],
+['OBSIDIAN', [80, 'OBSIDIAN'], [160, 'OBSIDIAN'], [320, 'OBSIDIAN'], [512, 'OBSIDIAN'], [8, 'ENCHANTED_OBSIDIAN'], [16, 'ENCHANTED_OBSIDIAN'], [32, 'ENCHANTED_OBSIDIAN'], [64, 'ENCHANTED_OBSIDIAN'], [128, 'ENCHANTED_OBSIDIAN'], [256, 'ENCHANTED_OBSIDIAN'], [512, 'ENCHANTED_OBSIDIAN']],
+['QUARTZ', [80, 'QUARTZ'], [160, 'QUARTZ'], [320, 'QUARTZ'], [512, 'QUARTZ'], [8, 'ENCHANTED_QUARTZ'], [24, 'ENCHANTED_QUARTZ'], [64, 'ENCHANTED_QUARTZ'], [128, 'ENCHANTED_QUARTZ'], [256, 'ENCHANTED_QUARTZ'], [512, 'ENCHANTED_QUARTZ'], [8, 'ENCHANTED_QUARTZ_BLOCK']],
+['REDSTONE', [128, 'REDSTONE'], [256, 'REDSTONE'], [512, 'REDSTONE'], [8, 'ENCHANTED_REDSTONE'], [24, 'ENCHANTED_REDSTONE'], [64, 'ENCHANTED_REDSTONE'], [128, 'ENCHANTED_REDSTONE'], [256, 'ENCHANTED_REDSTONE'], [512, 'ENCHANTED_REDSTONE'], [8, 'ENCHANTED_REDSTONE_BLOCK'], [16, 'ENCHANTED_REDSTONE_BLOCK']],
+['EMERALD', [80, 'EMERALD'], [160, 'EMERALD'], [320, 'EMERALD'], [512, 'EMERALD'], [8, 'ENCHANTED_EMERALD'], [24, 'ENCHANTED_EMERALD'], [64, 'ENCHANTED_EMERALD'], [128, 'ENCHANTED_EMERALD'], [256, 'ENCHANTED_EMERALD'], [512, 'ENCHANTED_EMERALD'], [8, 'ENCHANTED_EMERALD_BLOCK']],
+['LAPIS', [256, 'INK_SACK:4'], [512, 'INK_SACK:4'], [8, 'ENCHANTED_LAPIS_LAZULI'], [24, 'ENCHANTED_LAPIS_LAZULI'], [64, 'ENCHANTED_LAPIS_LAZULI'], [128, 'ENCHANTED_LAPIS_LAZULI'], [256, 'ENCHANTED_LAPIS_LAZULI'], [512, 'ENCHANTED_LAPIS_LAZULI'], [8, 'ENCHANTED_LAPIS_LAZULI_BLOCK'], [16, 'ENCHANTED_LAPIS_LAZULI_BLOCK'], [32, 'ENCHANTED_LAPIS_LAZULI_BLOCK']],
+['DIAMOND', [80, 'DIAMOND'], [160, 'DIAMOND'], [320, 'DIAMOND'], [512, 'DIAMOND'], [8, 'ENCHANTED_DIAMOND'], [24, 'ENCHANTED_DIAMOND'], [64, 'ENCHANTED_DIAMOND'], [128, 'ENCHANTED_DIAMOND'], [256, 'ENCHANTED_DIAMOND'], [512, 'ENCHANTED_DIAMOND'], [8, 'ENCHANTED_DIAMOND_BLOCK']],
+['GOLD', [80, 'GOLD_INGOT'], [160, 'GOLD_INGOT'], [320, 'GOLD_INGOT'], [512, 'GOLD_INGOT'], [8, 'ENCHANTED_GOLD'], [24, 'ENCHANTED_GOLD'], [64, 'ENCHANTED_GOLD'], [128, 'ENCHANTED_GOLD'], [256, 'ENCHANTED_GOLD'], [512, 'ENCHANTED_GOLD'], [8, 'ENCHANTED_GOLD_BLOCK']],
+['IRON', [80, 'IRON_INGOT'], [160, 'IRON_INGOT'], [320, 'IRON_INGOT'], [512, 'IRON_INGOT'], [8, 'ENCHANTED_IRON'], [24, 'ENCHANTED_IRON'], [64, 'ENCHANTED_IRON'], [128, 'ENCHANTED_IRON'], [256, 'ENCHANTED_IRON'], [512, 'ENCHANTED_IRON'], [8, 'ENCHANTED_IRON_BLOCK']],
+['COAL', [80, 'COAL'], [160, 'COAL'], [320, 'COAL'], [512, 'COAL'], [8, 'ENCHANTED_COAL'], [24, 'ENCHANTED_COAL'], [64, 'ENCHANTED_COAL'], [128, 'ENCHANTED_COAL'], [256, 'ENCHANTED_COAL'], [512, 'ENCHANTED_COAL'], [8, 'ENCHANTED_COAL_BLOCK']],
+['COBBLESTONE', [80, 'COBBLESTONE'], [160, 'COBBLESTONE'], [320, 'COBBLESTONE'], [512, 'COBBLESTONE'], [8, 'ENCHANTED_COBBLESTONE'], [16, 'ENCHANTED_COBBLESTONE'], [32, 'ENCHANTED_COBBLESTONE'], [64, 'ENCHANTED_COBBLESTONE'], [128, 'ENCHANTED_COBBLESTONE'], [256, 'ENCHANTED_COBBLESTONE'], [512, 'ENCHANTED_COBBLESTONE']],
+['RED_SAND', [80, 'SAND:1'], [256, 'SAND:1'], [512, 'SAND:1'], [16, 'ENCHANTED_RED_SAND'], [32, 'ENCHANTED_RED_SAND'], [64, 'ENCHANTED_RED_SAND'], [128, 'ENCHANTED_RED_SAND'], [256, 'ENCHANTED_RED_SAND'], [512, 'ENCHANTED_RED_SAND'], [8, 'ENCHANTED_RED_SAND_CUBE'], [16, 'ENCHANTED_RED_SAND_CUBE']],
+['MYCELIUM', [80, 'MYCEL'], [256, 'MYCEL'], [512, 'MYCEL'], [16, 'ENCHANTED_MYCELIUM'], [32, 'ENCHANTED_MYCELIUM'], [64, 'ENCHANTED_MYCELIUM'], [128, 'ENCHANTED_MYCELIUM'], [256, 'ENCHANTED_MYCELIUM'], [512, 'ENCHANTED_MYCELIUM'], [8, 'ENCHANTED_MYCELIUM_CUBE'], [16, 'ENCHANTED_MYCELIUM_CUBE']],
+['HARD_STONE', [256, 'HARD_STONE'], [512, 'HARD_STONE'], [8, 'ENCHANTED_HARD_STONE'], [16, 'ENCHANTED_HARD_STONE'], [32, 'ENCHANTED_HARD_STONE'], [64, 'ENCHANTED_HARD_STONE'], [128, 'ENCHANTED_HARD_STONE'], [256, 'ENCHANTED_HARD_STONE'], [512, 'ENCHANTED_HARD_STONE'], [8, 'CONCENTRATED_STONE'], [16, 'CONCENTRATED_STONE']],
+['MITHRIL', [80, 'MITHRIL_ORE'], [160, 'MITHRIL_ORE'], [320, 'MITHRIL_ORE'], [512, 'MITHRIL_ORE'], [8, 'ENCHANTED_MITHRIL'], [24, 'ENCHANTED_MITHRIL'], [64, 'ENCHANTED_MITHRIL'], [128, 'ENCHANTED_MITHRIL'], [256, 'ENCHANTED_MITHRIL'], [512, 'ENCHANTED_MITHRIL'], [8, 'REFINED_MITHRIL']],
+['ENDER_STONE', [80, 'ENDER_STONE'], [160, 'ENDER_STONE'], [320, 'ENDER_STONE'], [512, 'ENDER_STONE'], [8, 'ENCHANTED_ENDSTONE'], [16, 'ENCHANTED_ENDSTONE'], [32, 'ENCHANTED_ENDSTONE'], [64, 'ENCHANTED_ENDSTONE'], [128, 'ENCHANTED_ENDSTONE'], [256, 'ENCHANTED_ENDSTONE'], [512, 'ENCHANTED_ENDSTONE']],
+['BIRCH', [80, 'LOG:2'], [160, 'LOG:2'], [320, 'LOG:2'], [512, 'LOG:2'], [8, 'ENCHANTED_BIRCH_LOG'], [16, 'ENCHANTED_BIRCH_LOG'], [32, 'ENCHANTED_BIRCH_LOG'], [64, 'ENCHANTED_BIRCH_LOG'], [128, 'ENCHANTED_BIRCH_LOG'], [256, 'ENCHANTED_BIRCH_LOG'], [512, 'ENCHANTED_BIRCH_LOG']],
+['SPRUCE', [80, 'LOG:1'], [160, 'LOG:1'], [320, 'LOG:1'], [512, 'LOG:1'], [8, 'ENCHANTED_SPRUCE_LOG'], [16, 'ENCHANTED_SPRUCE_LOG'], [32, 'ENCHANTED_SPRUCE_LOG'], [64, 'ENCHANTED_SPRUCE_LOG'], [128, 'ENCHANTED_SPRUCE_LOG'], [256, 'ENCHANTED_SPRUCE_LOG'], [512, 'ENCHANTED_SPRUCE_LOG']],
+['OAK', [80, 'LOG'], [160, 'LOG'], [320, 'LOG'], [512, 'LOG'], [8, 'ENCHANTED_OAK_LOG'], [16, 'ENCHANTED_OAK_LOG'], [32, 'ENCHANTED_OAK_LOG'], [64, 'ENCHANTED_OAK_LOG'], [128, 'ENCHANTED_OAK_LOG'], [256, 'ENCHANTED_OAK_LOG'], [512, 'ENCHANTED_OAK_LOG']],
 ];
 const digits = "0123456789"; 
 const noBazaar = new Map(); 
@@ -92,6 +113,19 @@ diffNames.set("CARROT_ITEM", "CARROT");
 diffNames.set("ENCHANTED_HAY_BLOCK", "ENCHANTED_HAY_BALE"); 
 diffNames.set("HAY_BLOCK", "HAY_BALE"); 
 diffNames.set("POTATO_ITEM", "POTATO"); 
+diffNames.set("INK_SACK:4", "LAPIS_LAZULI"); 
+diffNames.set("ENCHANTED_LAPIS_LAZULI_BLOCK", "ENCHANTED_LAPIS_BLOCK"); 
+diffNames.set("CLAY_BALL", "CLAY"); 
+diffNames.set("ENCHANTED_CLAY_BALL", "ENCHANTED_CLAY"); 
+diffNames.set("LOG:3", "JUNGLE_WOOD"); 
+diffNames.set("LOG_2", "ACACIA_WOOD"); 
+diffNames.set("LOG_2:1", "DARK_OAK_WOOD");
+diffNames.set("LOG:2", "BIRCH_WOOD");
+diffNames.set("LOG:1", "SPRUCE_WOOD");
+diffNames.set("LOG", "OAK_WOOD"); 
+diffNames.set("SAND:1", "RED_SAND"); 
+diffNames.set("MYCEL", "MYCELIUM"); 
+
 
 const reqItems = new Set(); 
 dbg(minionInfo); 
@@ -116,17 +150,17 @@ let upgList = [];
 // function(x, y) { return x[5] - y[5] }
 
 let maxCost = 0; 
-const cumMinions = new Map(); 
+const ans = new Map(); 
 let ckeys = []; 
 // [minion name, [[material, material #, material cost], [mat...]] 
 
 function getUpgrades2() {
-  cumMinions.clear(); 
+  ans.clear(); 
   ckeys = []; 
   for (let i = 0; i < upgList.length; ++i) {
     if (upgList[i][5] <= maxCost) {
-      if (cumMinions.has(upgList[i][0])) {
-        let cur = cumMinions.get(upgList[i][0]); 
+      if (ans.has(upgList[i][0])) {
+        let cur = ans.get(upgList[i][0]); 
         let done = false; 
         for (let j = 0; j < cur[1].length; ++j) {
           if (upgList[i][2] == cur[1][j][0]) {
@@ -135,12 +169,12 @@ function getUpgrades2() {
           }
         }
         if (done == false) {
-          cur[1].push([[upgList[i][2], upgList[i][3], upgList[i][4]]]); 
+          cur[1].push([upgList[i][2], upgList[i][3], upgList[i][4]]); 
         }
         if (upgList[i][1] > cur[0]) cur[0] = upgList[i][1]; 
-        cumMinions.set(upgList[i][0], cur); 
+        ans.set(upgList[i][0], cur); 
       } else {
-        cumMinions.set(upgList[i][0], [upgList[i][1], [[upgList[i][2], upgList[i][3], upgList[i][4]]]]); 
+        ans.set(upgList[i][0], [upgList[i][1], [[upgList[i][2], upgList[i][3], upgList[i][4]]]]); 
         ckeys.push(upgList[i][0]); 
       }
     }
@@ -150,9 +184,9 @@ function getUpgrades2() {
   
   for (let j = 0; j < ckeys.length; ++j) {
     let key = ckeys[j]; 
-    console.log("[Minion: ", key, "] from level ", userMinionLevels.get(key), " to level ", cumMinions.get(key)[0]); 
-    for (let i = 0; i < cumMinions.get(key)[1].length; ++i) {
-      console.log("Material: ", cumMinions.get(key)[1][i][1], "x ", cumMinions.get(key)[1][i][0], " at ", cumMinions.get(key)[1][i][2], " per, for total ", cumMinions.get(key)[1][i][2] * cumMinions.get(key)[1][i][1]); 
+    console.log("[Minion: ", key, "] from level ", userMinionLevels.get(key), " to level ", ans.get(key)[0]); 
+    for (let i = 0; i < ans.get(key)[1].length; ++i) {
+      console.log("Material: ", ans.get(key)[1][i][1], "x ", ans.get(key)[1][i][0], " at ", ans.get(key)[1][i][2], " per, for total ", ans.get(key)[1][i][2] * ans.get(key)[1][i][1]); 
     }
     console.log(); 
   }
@@ -178,8 +212,6 @@ function getUpgrades() {
   console.log("STARTS HERE"); 
   console.log("<--------------------------------------------->")
   console.log("FULL LIST"); 
-  // console.log(upgList); 
-  // console.log(upgList.length); 
   console.log("FORMAT: [minion, to level #, item req., #req., item insta-buy cost, total cost]");
   console.log("STARRED (*) ITEMS UNAVAILABLE FROM BAZAAR, ASSUMED TO HAVE CONSTANT COSTS"); 
   for (let i = 0; i < upgList.length; ++i) {
@@ -194,6 +226,7 @@ async function getBazaar() {
   sellCosts.clear();
   buyCosts.clear();  
   for (let item of reqItems) { 
+    dbg(item); 
     if (noBazaar.has(item)) {
       buyCosts.set(item, noBazaar.get(item)); 
       sellCosts.set(item, noBazaar.get(item)); 
