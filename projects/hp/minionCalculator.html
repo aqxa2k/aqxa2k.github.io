@@ -179,6 +179,9 @@ function getUpgrades2() {
       }
     }
   }
+
+  ckeys.sort(function(x, y) { return (ans.get(y) - userMinionLevels.get(y)) - (ans.get(x) - userMinionLevels.get(x))}); 
+
   console.log("<--------------------------------------------------------------->"); 
   console.log("CUMULATIVE MINION UPGRADES FOR ALL UPGRADES LESS THAN ", maxCost); 
   
