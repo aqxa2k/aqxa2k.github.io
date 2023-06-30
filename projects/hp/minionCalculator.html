@@ -96,6 +96,16 @@ const minionInfo = [
 ['BIRCH', [80, 'LOG:2'], [160, 'LOG:2'], [320, 'LOG:2'], [512, 'LOG:2'], [8, 'ENCHANTED_BIRCH_LOG'], [16, 'ENCHANTED_BIRCH_LOG'], [32, 'ENCHANTED_BIRCH_LOG'], [64, 'ENCHANTED_BIRCH_LOG'], [128, 'ENCHANTED_BIRCH_LOG'], [256, 'ENCHANTED_BIRCH_LOG'], [512, 'ENCHANTED_BIRCH_LOG']],
 ['SPRUCE', [80, 'LOG:1'], [160, 'LOG:1'], [320, 'LOG:1'], [512, 'LOG:1'], [8, 'ENCHANTED_SPRUCE_LOG'], [16, 'ENCHANTED_SPRUCE_LOG'], [32, 'ENCHANTED_SPRUCE_LOG'], [64, 'ENCHANTED_SPRUCE_LOG'], [128, 'ENCHANTED_SPRUCE_LOG'], [256, 'ENCHANTED_SPRUCE_LOG'], [512, 'ENCHANTED_SPRUCE_LOG']],
 ['OAK', [80, 'LOG'], [160, 'LOG'], [320, 'LOG'], [512, 'LOG'], [8, 'ENCHANTED_OAK_LOG'], [16, 'ENCHANTED_OAK_LOG'], [32, 'ENCHANTED_OAK_LOG'], [64, 'ENCHANTED_OAK_LOG'], [128, 'ENCHANTED_OAK_LOG'], [256, 'ENCHANTED_OAK_LOG'], [512, 'ENCHANTED_OAK_LOG']],
+['JUNGLE', [80, 'LOG:3'], [160, 'LOG:3'], [320, 'LOG:3'], [512, 'LOG:3'], [8, 'ENCHANTED_JUNGLE_LOG'], [16, 'ENCHANTED_JUNGLE_LOG'], [32, 'ENCHANTED_JUNGLE_LOG'], [64, 'ENCHANTED_JUNGLE_LOG'], [128, 'ENCHANTED_JUNGLE_LOG'], [256, 'ENCHANTED_JUNGLE_LOG'], [512, 'ENCHANTED_JUNGLE_LOG']],
+['ACACIA', [80, 'LOG_2'], [160, 'LOG_2'], [320, 'LOG_2'], [512, 'LOG_2'], [8, 'ENCHANTED_ACACIA_LOG'], [16, 'ENCHANTED_ACACIA_LOG'], [32, 'ENCHANTED_ACACIA_LOG'], [64, 'ENCHANTED_ACACIA_LOG'], [128, 'ENCHANTED_ACACIA_LOG'], [256, 'ENCHANTED_ACACIA_LOG'], [512, 'ENCHANTED_ACACIA_LOG']],
+['DARK_OAK', [80, 'LOG_2:1'], [160, 'LOG_2:1'], [320, 'LOG_2:1'], [512, 'LOG_2:1'], [8, 'ENCHANTED_DARK_OAK_LOG'], [16, 'ENCHANTED_DARK_OAK_LOG'], [32, 'ENCHANTED_DARK_OAK_LOG'], [64, 'ENCHANTED_DARK_OAK_LOG'], [128, 'ENCHANTED_DARK_OAK_LOG'], [256, 'ENCHANTED_DARK_OAK_LOG'], [512, 'ENCHANTED_DARK_OAK_LOG']],
+['CLAY', [80, 'CLAY_BALL'], [160, 'CLAY_BALL'], [320, 'CLAY_BALL'], [512, 'CLAY_BALL'], [8, 'ENCHANTED_CLAY_BALL'], [16, 'ENCHANTED_CLAY_BALL'], [32, 'ENCHANTED_CLAY_BALL'], [64, 'ENCHANTED_CLAY_BALL'], [128, 'ENCHANTED_CLAY_BALL'], [256, 'ENCHANTED_CLAY_BALL'], [512, 'ENCHANTED_CLAY_BALL']],
+['FISHING', [64, 'RAW_FISH'], [128, 'RAW_FISH'], [256, 'RAW_FISH'], [512, 'RAW_FISH'], [8, 'ENCHANTED_RAW_FISH'], [24, 'ENCHANTED_RAW_FISH'], [64, 'ENCHANTED_RAW_FISH'], [128, 'ENCHANTED_RAW_FISH'], [256, 'ENCHANTED_RAW_FISH'], [512, 'ENCHANTED_RAW_FISH'], [8, 'ENCHANTED_COOKED_FISH']],
+['MAGMA_CUBE', [80, 'MAGMA_CREAM'], [160, 'MAGMA_CREAM'], [320, 'MAGMA_CREAM'], [512, 'MAGMA_CREAM'], [8, 'ENCHANTED_MAGMA_CREAM'], [16, 'ENCHANTED_MAGMA_CREAM'], [32, 'ENCHANTED_MAGMA_CREAM'], [64, 'ENCHANTED_MAGMA_CREAM'], [128, 'ENCHANTED_MAGMA_CREAM'], [256, 'ENCHANTED_MAGMA_CREAM'], [512, 'ENCHANTED_MAGMA_CREAM']],
+['CAVESPIDER', [80, 'SPIDER_EYE'], [160, 'SPIDER_EYE'], [320, 'SPIDER_EYE'], [512, 'SPIDER_EYE'], [8, 'ENCHANTED_SPIDER_EYE'], [24, 'ENCHANTED_SPIDER_EYE'], [64, 'ENCHANTED_SPIDER_EYE'], [128, 'ENCHANTED_SPIDER_EYE'], [256, 'ENCHANTED_SPIDER_EYE'], [512, 'ENCHANTED_SPIDER_EYE'], [16, 'ENCHANTED_FERMENTED_SPIDER_EYE']],
+['ICE', [80, 'ICE'], [160, 'ICE'], [320, 'ICE'], [512, 'ICE'], [128, 'PACKED_ICE'], [256, 'PACKED_ICE'], [512, 'PACKED_ICE'], [64, 'ENCHANTED_ICE'], [128, 'ENCHANTED_ICE'], [256, 'ENCHANTED_ICE'], [512, 'ENCHANTED_ICE']],
+['SAND', [80, 'SAND'], [160, 'SAND'], [320, 'SAND'], [512, 'SAND'], [8, 'ENCHANTED_SAND'], [16, 'ENCHANTED_SAND'], [32, 'ENCHANTED_SAND'], [64, 'ENCHANTED_SAND'], [128, 'ENCHANTED_SAND'], [256, 'ENCHANTED_SAND'], [512, 'ENCHANTED_SAND']],
+['GRAVEL', [80, 'GRAVEL'], [160, 'GRAVEL'], [320, 'GRAVEL'], [512, 'GRAVEL'], [8, 'ENCHANTED_FLINT'], [16, 'ENCHANTED_FLINT'], [32, 'ENCHANTED_FLINT'], [64, 'ENCHANTED_FLINT'], [128, 'ENCHANTED_FLINT'], [256, 'ENCHANTED_FLINT'], [512, 'ENCHANTED_FLINT']],
 ];
 const digits = "0123456789"; 
 const noBazaar = new Map(); 
@@ -137,10 +147,12 @@ for (let i = 0; i < minionInfo.length; ++i) {
 
 const api_prof_link = "https://sky.shiiyu.moe/api/v2/profile/"; // incomplete link, needs user minecraft name 
 const api_bazaar_link = "https://sky.shiiyu.moe/api/v2/bazaar"; // complete 
+const statstracklink = "https://sky.shiiyu.moe/stats/"; 
 
 const sellCosts = new Map(); 
 const buyCosts = new Map(); 
 const userMinionLevels = new Map(); 
+let nameGood = true; 
 let savedUsername = "", savedProfname = ""; 
 let username = "", profname = ""; 
 let gotLevels = false; 
@@ -180,7 +192,7 @@ function getUpgrades2() {
     }
   }
 
-  ckeys.sort(function(x, y) { return (ans.get(y) - userMinionLevels.get(y)) - (ans.get(x) - userMinionLevels.get(x))}); 
+  ckeys.sort(function(x, y) { return (ans.get(y)[0] - userMinionLevels.get(y)) - (ans.get(x)[0] - userMinionLevels.get(x))}); 
 
   console.log("<--------------------------------------------------------------->"); 
   console.log("CUMULATIVE MINION UPGRADES FOR ALL UPGRADES LESS THAN ", maxCost); 
@@ -243,10 +255,6 @@ async function getBazaar() {
 }
 
 async function getLevels() { // gets player minion levels 
-  if (savedUsername == username && savedProfname == profname && username != "" && profname != "") {
-    gotLevels = true; 
-    return; 
-  }
   const link = api_prof_link + username; 
   const response = await fetch(link); 
   if (!response.ok) {
